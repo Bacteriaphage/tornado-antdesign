@@ -1,0 +1,11 @@
+build container:
+    1. build image using Dockerfile and using requirements.txt to install python package
+    2. to build multiple docker easily, using multistage Dockerfile and build with --target
+    3. run a container and map docker port to local machine port using -p
+    4. check alias docker_clean to see how to clean all containers and images
+
+antd localization:
+    1. to using antd js and css, see static/components/index.js
+    2. we don't need import React and ReactDOM in index.js, since we don't have node.js,
+       see Asynchronous Module Defination and CommonJS for more information.
+       ref: https://stackoverflow.com/questions/36698354/require-is-not-defined
