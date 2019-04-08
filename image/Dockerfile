@@ -1,5 +1,6 @@
-FROM ubuntu:latest
+FROM ubuntu:latest AS base
 WORKDIR /app
+# copy files into container
 COPY . /app
 # update apt-get
 RUN echo "===update apt-get ===" && apt-get update
@@ -7,6 +8,11 @@ RUN echo "===update apt-get ===" && apt-get update
 RUN echo "===install python and pip===" && apt-get install -y python3 && apt-get install -y python3-pip
 # install required python package
 RUN echo "===install python package===" && pip3 install --trusted-host pypi.python.org -r requirements.txt
-# export 80 port
-EXPOSE 80
-#CMD ["python3", "app.py"]
+# install editor
+RUN apt-get install -y vim
+# export 8000 port
+EXPOSE 8000
+
+FROM base AS app
+#run app
+CMD ["python3", "./server/app.py"]
